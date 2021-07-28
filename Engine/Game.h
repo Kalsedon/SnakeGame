@@ -23,6 +23,9 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Location.h"
+#include "Board.h"
+#include "Snake.h"
 
 class Game
 {
@@ -40,6 +43,11 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
+	Board brd;
+	Location delta_loc = { 1, 0 };
+	Snake snek;
+	int snekMoveCounter = 0;
+	static constexpr int snekMovePeriod = 40;
 	/********************************/
 	/*  User Variables              */
 	/********************************/

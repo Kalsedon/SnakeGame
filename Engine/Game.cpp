@@ -21,10 +21,12 @@
 #include "MainWindow.h"
 #include "Game.h"
 
-Game::Game( MainWindow& wnd )
+Game::Game(MainWindow& wnd)
 	:
-	wnd( wnd ),
-	gfx( wnd )
+	wnd(wnd),
+	gfx(wnd),
+	brd(gfx),
+	snek({ 2,2 })
 {
 }
 
@@ -38,8 +40,32 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	if (wnd.kbd.KeyIsPressed(VK_UP))
+	{
+		delta_loc = { 0,-1 };
+	}
+	if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	{
+		delta_loc = { 0,1 };
+	}
+	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	{
+		delta_loc = { 1,0 };
+	}
+	if (wnd.kbd.KeyIsPressed(VK_LEFT))
+	{
+		delta_loc = { -1,0 };
+	}
+	snekMoveCounter++;
+	if (snekMoveCounter >= snekMovePeriod)
+	{
+		snekMoveCounter = 0;
+		snek.MoveBy(delta_loc);
+	}
+	
 }
 
 void Game::ComposeFrame()
 {
+	snek.Draw(brd);
 }
