@@ -28,7 +28,7 @@ void Snake::Grow()
 	segments[currentsegments - 1].InitBody();
 }
 
-Location& Snake::getNextHeadLoc(const Location& delta_loc) const
+Location Snake::getNextHeadLoc(const Location& delta_loc) const
 {
 	Location l(segments[0].getLoc());
 	l.Add(delta_loc);

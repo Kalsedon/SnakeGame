@@ -22,12 +22,12 @@ public:
 	void MoveBy(Location& delta_loc);
 	void Draw(Board& brd);
 	void Grow();
-	Location& getNextHeadLoc(const Location& delta_loc) const;
+	Location getNextHeadLoc(const Location& delta_loc) const;
 	bool IsInTile(const Location& next) const;
 private:
 	static constexpr Color headColor = Colors::Green;
 	static constexpr Color bodyColor = Colors::LightGray;
 	static constexpr int maxSegments = 100;
-    int currentsegments = 1;
+	int currentsegments = 1;
 	Segment segments[maxSegments];
 };

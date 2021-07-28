@@ -48,6 +48,8 @@ private:
 	Snake snek;
 	int snekMoveCounter = 0;
 	static constexpr int snekMovePeriod = 40;
+	bool isGameOver = false;
+	bool isStarted = false;
 	/********************************/
 	/*  User Variables              */
 	/********************************/

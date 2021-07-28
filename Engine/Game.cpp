@@ -20,7 +20,7 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
-
+#include "SpriteCodex.h"
 Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
@@ -40,6 +40,8 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	if (!isGameOver && isStarted )
+	{
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
 		delta_loc = { 0,-1 };
@@ -56,16 +58,51 @@ void Game::UpdateModel()
 	{
 		delta_loc = { -1,0 };
 	}
-	snekMoveCounter++;
-	if (snekMoveCounter >= snekMovePeriod)
-	{
-		snekMoveCounter = 0;
-		snek.MoveBy(delta_loc);
-	}
 	
+	
+		snekMoveCounter++;
+		if (snekMoveCounter >= snekMovePeriod)
+		{
+			snekMoveCounter = 0;
+			Location next = snek.getNextHeadLoc(delta_loc);
+			
+			if (!brd.IsInsideBoard(next) || snek.IsInTile(next))
+			{
+				isGameOver = true;
+			}
+			else
+			{
+				if (wnd.kbd.KeyIsPressed(VK_RETURN))
+				{
+					snek.Grow();
+				}
+				snek.MoveBy(delta_loc);
+			}
+			
+		}
+	}
+	else
+	{
+		if (wnd.kbd.KeyIsPressed(VK_RETURN))
+		{
+			isStarted = true;
+		}
+	}
 }
 
 void Game::ComposeFrame()
 {
-	snek.Draw(brd);
+	if (!isStarted)
+	{
+		SpriteCodex::DrawTitle(290, 210, gfx);
+	}
+	else
+	{
+		snek.Draw(brd);
+	}
+	
+	if (isGameOver)
+	{
+		SpriteCodex::DrawGameOver(250, 250, gfx);
+	}
 }
