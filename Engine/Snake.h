@@ -1,6 +1,6 @@
 #pragma once
 #include "Board.h"
-
+#include <assert.h>
 class Snake
 {
 private:
@@ -12,6 +12,7 @@ private:
 		void InitBody();
 		void Follow(const Segment& next);
 		void MoveBy(Location& delta_loc);
+		Location getLoc() const;
 	private:
 		Location loc;
 		Color c;
@@ -21,6 +22,8 @@ public:
 	void MoveBy(Location& delta_loc);
 	void Draw(Board& brd);
 	void Grow();
+	Location& getNextHeadLoc(const Location& delta_loc) const;
+	bool IsInTile(const Location& next) const;
 private:
 	static constexpr Color headColor = Colors::Green;
 	static constexpr Color bodyColor = Colors::LightGray;

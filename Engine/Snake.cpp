@@ -28,6 +28,25 @@ void Snake::Grow()
 	segments[currentsegments - 1].InitBody();
 }
 
+Location& Snake::getNextHeadLoc(const Location& delta_loc) const
+{
+	Location l(segments[0].getLoc());
+	l.Add(delta_loc);
+	return l;
+}
+
+bool Snake::IsInTile(const Location& next) const
+{
+	for(int i = currentsegments; i > 0; i--)
+	{
+		if (segments[0].getLoc() == segments[i].getLoc())
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 
 void Snake::Segment::Draw(Board& brd)
 {
@@ -52,5 +71,11 @@ void Snake::Segment::Follow(const Segment& next)
 
 void Snake::Segment::MoveBy(Location& delta_loc)
 {
+	assert(abs(delta_loc.x) + abs(delta_loc.y) <= 1);
 	loc.Add(delta_loc);
+}
+
+Location Snake::Segment::getLoc() const
+{
+	return loc;
 }
