@@ -37,9 +37,9 @@ Location Snake::getNextHeadLoc(const Location& delta_loc) const
 
 bool Snake::IsInTile(const Location& next) const
 {
-	for(int i = currentsegments; i > 0; i--)
+	for(int i = 1; i < currentsegments; i++)
 	{
-		if (segments[0].getLoc() == segments[i].getLoc())
+		if (segments[i].getLoc() == next)
 		{
 			return true;
 		}

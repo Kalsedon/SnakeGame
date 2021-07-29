@@ -75,8 +75,16 @@ void Game::UpdateModel()
 				if (wnd.kbd.KeyIsPressed(VK_RETURN))
 				{
 					snek.Grow();
+					if (snek.IsInTile(next))
+					{
+						isGameOver = true;
+					}
 				}
-				snek.MoveBy(delta_loc);
+				if (!isGameOver)
+				{
+					snek.MoveBy(delta_loc);
+				}
+				
 			}
 			
 		}
