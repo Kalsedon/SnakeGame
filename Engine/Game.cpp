@@ -25,8 +25,8 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	brd(gfx),
-	snek({ 2,2 }),
+	brd(gfx, boardLoc),
+	snek({ 5,4 }),
 	rng(std::random_device()()),
 	goal(rng,brd,snek)
 {
@@ -101,6 +101,7 @@ void Game::ComposeFrame()
 	}
 	else
 	{
+		brd.DrawBoard();
 		snek.Draw(brd);
 		goal.Draw(brd);
 	}

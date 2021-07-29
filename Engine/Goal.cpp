@@ -7,8 +7,10 @@ Goal::Goal(std::mt19937& rng, Board& brd, Snake& snake)
 
 void Goal::Respawn(std::mt19937& rng, Board& brd, Snake& snake)
 {
-	std::uniform_int_distribution<int> xDist(0, brd.getWidth());
-	std::uniform_int_distribution<int> yDist(0, brd.getHeight());
+	int right = brd.getLoc().x + brd.getWidth() - 1;
+	int bottom = brd.getLoc().y + brd.getHeight() - 1;
+	std::uniform_int_distribution<int> xDist(brd.getLoc().x, right);
+	std::uniform_int_distribution<int> yDist(brd.getLoc().y, bottom);
 
 	Location newLoc;
 	do

@@ -44,13 +44,14 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
+	Location boardLoc = { 4,3 };
 	Board brd;
 	Location delta_loc = { 1, 0 };
 	Snake snek;
 	std::mt19937 rng;
 	Goal goal;
 	int snekMoveCounter = 0;
-	static constexpr int snekMovePeriod = 30;
+	static constexpr int snekMovePeriod = 10;
 	bool isGameOver = false;
 	bool isStarted = false;
 	/********************************/
