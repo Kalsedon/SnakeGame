@@ -12,6 +12,6 @@ public:
 	bool eating(const Location snek);
 	const Location getLoc();
 private:
-	Color c = { 145, 142, 134 };
+	Color c = { 252, 186, 3 };
 	Location loc;
 };

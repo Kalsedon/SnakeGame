@@ -25,7 +25,15 @@ void Snake::Draw(Board& brd)
 void Snake::Grow()
 {
 	++currentsegments;
-	segments[currentsegments - 1].InitBody();
+	const Color colors[4] =
+	{
+		{ 57, 184, 91 },
+		{ 42, 156, 72 },
+		{ 24, 120, 49 },
+		{ 41, 255, 152 }
+	};
+	Color bodycolor = colors[(currentsegments - 1) % 4];
+	segments[currentsegments - 1].InitBody(bodycolor);
 }
 
 Location Snake::getNextHeadLoc(const Location& delta_loc) const
@@ -59,9 +67,9 @@ void Snake::Segment::InitHead(const Location in_loc)
 	c = Snake::headColor;
 }
 
-void Snake::Segment::InitBody()
+void Snake::Segment::InitBody(Color colorcode)
 {
-	c = Snake::bodyColor;
+	c = colorcode;
 }
 
 void Snake::Segment::Follow(const Segment& next)

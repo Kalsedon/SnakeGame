@@ -9,7 +9,7 @@ private:
 	public:
 		void Draw(Board& brd);
 		void InitHead(const Location loc);
-		void InitBody();
+		void InitBody(Color colorcode);
 		void Follow(const Segment& next);
 		void MoveBy(Location& delta_loc);
 		Location getLoc() const;
@@ -25,8 +25,7 @@ public:
 	Location getNextHeadLoc(const Location& delta_loc) const;
 	bool IsInTile(const Location& next) const;
 private:
-	static constexpr Color headColor = Colors::Green;
-	static constexpr Color bodyColor = Colors::LightGray;
+	static constexpr Color headColor = { 41, 123, 255 };
 	static constexpr int maxSegments = 100;
 	int currentsegments = 1;
 	Segment segments[maxSegments];

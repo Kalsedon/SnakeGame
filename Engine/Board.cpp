@@ -10,7 +10,7 @@ Board::Board(Graphics& gfx, Location loc)
 
 void Board::DrawCell(Location& loc, Color c)
 {
-	gfx.DrawRectDim(loc.x * dimension, loc.y * dimension, dimension, dimension, c);
+	gfx.DrawRectDim(loc.x * dimension + 1, loc.y * dimension + 1, dimension - 2, dimension - 2, c);
 }
 
 void Board::DrawBoard()
