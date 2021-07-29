@@ -26,6 +26,7 @@
 #include "Location.h"
 #include "Board.h"
 #include "Snake.h"
+#include "Goal.h"
 
 class Game
 {
@@ -46,8 +47,10 @@ private:
 	Board brd;
 	Location delta_loc = { 1, 0 };
 	Snake snek;
+	std::mt19937 rng;
+	Goal goal;
 	int snekMoveCounter = 0;
-	static constexpr int snekMovePeriod = 40;
+	static constexpr int snekMovePeriod = 30;
 	bool isGameOver = false;
 	bool isStarted = false;
 	/********************************/

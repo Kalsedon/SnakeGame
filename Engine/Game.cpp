@@ -26,7 +26,9 @@ Game::Game(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	brd(gfx),
-	snek({ 2,2 })
+	snek({ 2,2 }),
+	rng(std::random_device()()),
+	goal(rng,brd,snek)
 {
 }
 
@@ -65,26 +67,19 @@ void Game::UpdateModel()
 		{
 			snekMoveCounter = 0;
 			Location next = snek.getNextHeadLoc(delta_loc);
-			
+			bool eatingGoal = goal.eating(next);
+			if (eatingGoal)
+			{
+				goal.Respawn(rng,brd,snek);
+				snek.Grow();
+			}
 			if (!brd.IsInsideBoard(next) || snek.IsInTile(next))
 			{
 				isGameOver = true;
 			}
 			else
 			{
-				if (wnd.kbd.KeyIsPressed(VK_RETURN))
-				{
-					snek.Grow();
-					if (snek.IsInTile(next))
-					{
-						isGameOver = true;
-					}
-				}
-				if (!isGameOver)
-				{
-					snek.MoveBy(delta_loc);
-				}
-				
+				snek.MoveBy(delta_loc);
 			}
 			
 		}
@@ -107,6 +102,7 @@ void Game::ComposeFrame()
 	else
 	{
 		snek.Draw(brd);
+		goal.Draw(brd);
 	}
 	
 	if (isGameOver)
