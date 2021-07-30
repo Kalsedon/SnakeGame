@@ -28,7 +28,8 @@ Game::Game(MainWindow& wnd)
 	brd(gfx, boardLoc),
 	snek({ 5,4 }),
 	rng(std::random_device()()),
-	goal(rng,brd,snek)
+	goal(rng,brd,snek),
+	obs(brd,snek)
 {
 }
 
@@ -46,19 +47,31 @@ void Game::UpdateModel()
 	{
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
-		delta_loc = { 0,-1 };
+		if (!(delta_loc.x == 0 && delta_loc.y == 1))
+		{
+			delta_loc = { 0,-1 };
+		}
 	}
 	if (wnd.kbd.KeyIsPressed(VK_DOWN))
 	{
-		delta_loc = { 0,1 };
+		if (!(delta_loc.x == 0 && delta_loc.y == -1))
+		{
+			delta_loc = { 0,1 };
+		}
 	}
 	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 	{
-		delta_loc = { 1,0 };
+		if (!(delta_loc.x == -1 && delta_loc.y == 0))
+		{
+			delta_loc = { 1,0 };
+		}
 	}
 	if (wnd.kbd.KeyIsPressed(VK_LEFT))
 	{
-		delta_loc = { -1,0 };
+		if (!(delta_loc.x == 1 && delta_loc.y == 0))
+		{
+			delta_loc = { -1,0 };
+		}
 	}
 	
 	
@@ -73,7 +86,7 @@ void Game::UpdateModel()
 				goal.Respawn(rng,brd,snek);
 				snek.Grow();
 			}
-			if (!brd.IsInsideBoard(next) || snek.IsInTile(next))
+			if (!brd.IsInsideBoard(next) || snek.IsInTile(next) || obs.eating(next))
 			{
 				isGameOver = true;
 			}
@@ -82,6 +95,13 @@ void Game::UpdateModel()
 				snek.MoveBy(delta_loc);
 			}
 			
+		}
+
+		obsCounter++;
+		if(obsCounter > obsSpawnPeriod)
+		{
+			obsCounter = 0;
+			obs.Spawn(goal);
 		}
 	}
 	else
@@ -104,6 +124,7 @@ void Game::ComposeFrame()
 		brd.DrawBoard();
 		snek.Draw(brd);
 		goal.Draw(brd);
+		obs.Draw();
 	}
 	
 	if (isGameOver)

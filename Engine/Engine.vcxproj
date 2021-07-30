@@ -149,6 +149,7 @@
     <ClInclude Include="Location.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="Obstacles.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="Sound.h" />
@@ -166,6 +167,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="Obstacles.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SpriteCodex.cpp" />

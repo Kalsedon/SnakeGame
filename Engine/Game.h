@@ -27,6 +27,7 @@
 #include "Board.h"
 #include "Snake.h"
 #include "Goal.h"
+#include "Obstacles.h"
 
 class Game
 {
@@ -50,8 +51,11 @@ private:
 	Snake snek;
 	std::mt19937 rng;
 	Goal goal;
+	Obstacles obs;
 	int snekMoveCounter = 0;
 	static constexpr int snekMovePeriod = 10;
+	int obsCounter = 0;
+	static constexpr int obsSpawnPeriod = 300;
 	bool isGameOver = false;
 	bool isStarted = false;
 	/********************************/
