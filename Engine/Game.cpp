@@ -74,11 +74,12 @@ void Game::UpdateModel()
 		}
 	}
 	
-	
 		snekMoveCounter++;
 		if (snekMoveCounter >= snekMovePeriod)
 		{
 			snekMoveCounter = 0;
+			
+			
 			Location next = snek.getNextHeadLoc(delta_loc);
 			bool eatingGoal = goal.eating(next);
 			if (eatingGoal)
@@ -94,15 +95,20 @@ void Game::UpdateModel()
 			{
 				snek.MoveBy(delta_loc);
 			}
-			
 		}
-
+		++snekSpeedUpCounter;
+		if (snekSpeedUpCounter > speedUpPeriod)
+		{
+			snekSpeedUpCounter = 0;
+			snekMovePeriod = std::max(6, snekMovePeriod - 1);
+		}
 		obsCounter++;
 		if(obsCounter > obsSpawnPeriod)
 		{
 			obsCounter = 0;
 			obs.Spawn();
 		}
+		
 	}
 	else
 	{
@@ -129,6 +135,6 @@ void Game::ComposeFrame()
 	
 	if (isGameOver)
 	{
-		SpriteCodex::DrawGameOver(350, 270, gfx);
+		SpriteCodex::DrawGameOver(230, 210, gfx);
 	}
 }

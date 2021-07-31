@@ -53,7 +53,9 @@ private:
 	Obstacles obs;
 	Goal goal;
 	int snekMoveCounter = 0;
-	static constexpr int snekMovePeriod = 10;
+	int snekMovePeriod = 16;
+	int snekSpeedUpCounter = 0;
+	static constexpr int speedUpPeriod = 260;
 	int obsCounter = 0;
 	static constexpr int obsSpawnPeriod = 300;
 	bool isGameOver = false;
