@@ -9,7 +9,7 @@ Obstacles::Obstacles(Board& brd, Snake& snake)
 {
 }
 
-void Obstacles::Spawn(Goal& goal)
+void Obstacles::Spawn()
 {
 	if (currentobstacles < maxobstacles)
 	{
@@ -25,7 +25,7 @@ void Obstacles::Spawn(Goal& goal)
 	{
 		newLoc.x = xDist(rng);
 		newLoc.y = yDist(rng);
-	} while (snake.IsInTile(newLoc) && !(newLoc == goal.getLoc()));
+	} while (snake.IsInTile(newLoc));
 	
 		obstacles[currentobstacles - 1].setLoc(newLoc);
 	}

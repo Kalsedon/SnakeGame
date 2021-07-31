@@ -1,11 +1,11 @@
 #include "Goal.h"
 
-Goal::Goal(std::mt19937& rng, Board& brd, Snake& snake)
+Goal::Goal(std::mt19937& rng, Board& brd, Snake& snake, Obstacles& obs)
 {
-	Respawn(rng, brd, snake);
+	Respawn(rng, brd, snake, obs);
 }
 
-void Goal::Respawn(std::mt19937& rng, Board& brd, Snake& snake)
+void Goal::Respawn(std::mt19937& rng, Board& brd, Snake& snake, Obstacles& obs)
 {
 	int right = brd.getLoc().x + brd.getWidth() - 1;
 	int bottom = brd.getLoc().y + brd.getHeight() - 1;
@@ -17,7 +17,7 @@ void Goal::Respawn(std::mt19937& rng, Board& brd, Snake& snake)
 	{
 		newLoc.x = xDist(rng);
 		newLoc.y = yDist(rng);
-	} while (snake.IsInTile(newLoc));
+	} while (snake.IsInTile(newLoc) || obs.eating(newLoc));
 	
 	loc = newLoc;
 }
@@ -27,10 +27,10 @@ void Goal::Draw(Board& brd)
 	brd.DrawCell(loc, c);
 }
 
-bool Goal::eating(const Location snek)
+bool Goal::eating(const Location snekLoc)
 {
 	return
-		loc == snek;
+		loc == snekLoc;
 }
 
 const Location Goal::getLoc()

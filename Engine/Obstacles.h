@@ -2,7 +2,7 @@
 #include "Board.h"
 #include "Location.h"
 #include "Snake.h"
-#include "Goal.h"
+
 #include <random>
 class Obstacles
 {
@@ -19,7 +19,7 @@ private:
 	};
 public:
 	Obstacles(Board& brd, Snake& snake);
-	void Spawn(Goal& goal);
+	void Spawn();
 	void Draw();
 	bool eating(const Location next) const;
 private:

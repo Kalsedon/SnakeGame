@@ -28,8 +28,8 @@ Game::Game(MainWindow& wnd)
 	brd(gfx, boardLoc),
 	snek({ 5,4 }),
 	rng(std::random_device()()),
-	goal(rng,brd,snek),
-	obs(brd,snek)
+	obs(brd,snek),
+	goal(rng, brd, snek, obs)
 {
 }
 
@@ -83,7 +83,7 @@ void Game::UpdateModel()
 			bool eatingGoal = goal.eating(next);
 			if (eatingGoal)
 			{
-				goal.Respawn(rng,brd,snek);
+				goal.Respawn(rng,brd,snek,obs);
 				snek.Grow();
 			}
 			if (!brd.IsInsideBoard(next) || snek.IsInTile(next) || obs.eating(next))
@@ -101,7 +101,7 @@ void Game::UpdateModel()
 		if(obsCounter > obsSpawnPeriod)
 		{
 			obsCounter = 0;
-			obs.Spawn(goal);
+			obs.Spawn();
 		}
 	}
 	else
@@ -129,6 +129,6 @@ void Game::ComposeFrame()
 	
 	if (isGameOver)
 	{
-		SpriteCodex::DrawGameOver(250, 250, gfx);
+		SpriteCodex::DrawGameOver(350, 270, gfx);
 	}
 }

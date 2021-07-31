@@ -50,8 +50,8 @@ private:
 	Location delta_loc = { 1, 0 };
 	Snake snek;
 	std::mt19937 rng;
-	Goal goal;
 	Obstacles obs;
+	Goal goal;
 	int snekMoveCounter = 0;
 	static constexpr int snekMovePeriod = 10;
 	int obsCounter = 0;
