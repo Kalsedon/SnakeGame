@@ -22,6 +22,14 @@ void Goal::Respawn(std::mt19937& rng, Board& brd, Snake& snake, Obstacles& obs)
 	loc = newLoc;
 }
 
+void Goal::Update(std::mt19937& rng, Board& brd, Snake& snake, Obstacles& obs)
+{
+	if (obs.eating(loc))
+	{
+		Respawn(rng, brd, snake, obs);
+	}
+}
+
 void Goal::Draw(Board& brd)
 {
 	brd.DrawCell(loc, c);

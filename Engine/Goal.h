@@ -9,6 +9,7 @@ class Goal
 public:
 	Goal(std::mt19937& rng, Board& brd, Snake& snake, Obstacles& obs);
 	void Respawn(std::mt19937& rng, Board& brd, Snake& snake, Obstacles& obs);
+	void Update(std::mt19937& rng, Board& brd, Snake& snake, Obstacles& obs);
 	void Draw(Board& brd);
 	bool eating(const Location snekLoc);
 	const Location getLoc();

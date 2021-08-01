@@ -60,7 +60,6 @@ private:
 	static constexpr int obsSpawnPeriod = 300;
 	bool isGameOver = false;
 	bool isStarted = false;
-	bool restart = false;
 	/********************************/
 	/*  User Variables              */
 	/********************************/

@@ -109,6 +109,7 @@ void Game::UpdateModel()
 		{
 			obsCounter = 0;
 			obs.Spawn();
+			goal.Update(rng, brd, snek, obs);
 		}
 		}
 		else
