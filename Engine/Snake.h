@@ -24,6 +24,7 @@ public:
 	void Grow();
 	Location getNextHeadLoc(const Location& delta_loc) const;
 	bool IsInTile(const Location& next) const;
+	void resetSnake(const Location loc);
 private:
 	static constexpr Color headColor = { 41, 123, 255 };
 	static constexpr int maxSegments = 100;

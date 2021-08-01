@@ -55,6 +55,12 @@ bool Snake::IsInTile(const Location& next) const
 	return false;
 }
 
+void Snake::resetSnake(const Location loc)
+{
+	currentsegments = 1;
+	segments[0].InitHead(loc);
+}
+
 
 void Snake::Segment::Draw(Board& brd)
 {

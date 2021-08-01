@@ -51,6 +51,16 @@ bool Obstacles::eating(const Location next) const
 	return false;
 }
 
+int Obstacles::obsamount()
+{
+	return currentobstacles;
+}
+
+void Obstacles::resetObsAmount()
+{
+	currentobstacles = 0;
+}
+
 void Obstacles::Obstacle::Draw(Board& brd)
 {
 	brd.DrawCell(loc, c);

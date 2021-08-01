@@ -31,6 +31,7 @@ Game::Game(MainWindow& wnd)
 	obs(brd,snek),
 	goal(rng, brd, snek, obs)
 {
+	
 }
 
 void Game::Go()
@@ -43,8 +44,10 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	if (!isGameOver && isStarted )
+	if (isStarted)
 	{
+		if (!isGameOver)
+		{
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
 		if (!(delta_loc.x == 0 && delta_loc.y == 1))
@@ -78,8 +81,7 @@ void Game::UpdateModel()
 		if (snekMoveCounter >= snekMovePeriod)
 		{
 			snekMoveCounter = 0;
-			
-			
+				
 			Location next = snek.getNextHeadLoc(delta_loc);
 			bool eatingGoal = goal.eating(next);
 			if (eatingGoal)
@@ -108,7 +110,18 @@ void Game::UpdateModel()
 			obsCounter = 0;
 			obs.Spawn();
 		}
-		
+		}
+		else
+		{
+			if (wnd.kbd.KeyIsPressed(VK_RETURN))
+			{
+				    isGameOver = false;
+					obs.resetObsAmount();
+					snek.resetSnake( {5,4} );
+					delta_loc = { 1, 0 };
+					snekMovePeriod = 16;
+			}
+		}
 	}
 	else
 	{

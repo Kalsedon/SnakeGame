@@ -22,6 +22,8 @@ public:
 	void Spawn();
 	void Draw();
 	bool eating(const Location next) const;
+	int obsamount();
+	void resetObsAmount();
 private:
 	int currentobstacles = 0;
 	static constexpr int maxobstacles = 15;
