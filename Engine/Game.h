@@ -28,6 +28,7 @@
 #include "Snake.h"
 #include "Goal.h"
 #include "Obstacles.h"
+#include "Sound.h"
 
 class Game
 {
@@ -52,6 +53,8 @@ private:
 	std::mt19937 rng;
 	Obstacles obs;
 	Goal goal;
+	Sound gmover;
+	Sound eat2;
 	int snekMoveCounter = 0;
 	int snekMovePeriod = 16;
 	int snekSpeedUpCounter = 0;

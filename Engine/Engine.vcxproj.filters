@@ -16,6 +16,9 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{8b6c92a8-f65d-451e-80e3-d65773602b92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Media">
+      <UniqueIdentifier>{8e7800ba-2341-49e0-9d43-8822f29a0953}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChiliWin.h">
@@ -137,5 +140,19 @@
     <Image Include="Chili.ico">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="gameover.wav">
+      <Filter>Media</Filter>
+    </Media>
+    <Media Include="..\..\..\eat2.wav">
+      <Filter>Media</Filter>
+    </Media>
+    <Media Include="eat.wav">
+      <Filter>Media</Filter>
+    </Media>
+    <Media Include="gameplay2.wav">
+      <Filter>Media</Filter>
+    </Media>
   </ItemGroup>
 </Project>

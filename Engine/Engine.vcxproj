@@ -240,6 +240,12 @@
   <ItemGroup>
     <Image Include="Chili.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\eat2.wav" />
+    <Media Include="eat.wav" />
+    <Media Include="gameover.wav" />
+    <Media Include="gameplay2.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

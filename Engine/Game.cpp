@@ -29,7 +29,10 @@ Game::Game(MainWindow& wnd)
 	snek({ 5,4 }),
 	rng(std::random_device()()),
 	obs(brd,snek),
-	goal(rng, brd, snek, obs)
+	goal(rng, brd, snek, obs),
+	gmover(L"gameover.wav"),
+	eat2(L"eat2.wav")
+	
 {
 	
 }
@@ -48,6 +51,7 @@ void Game::UpdateModel()
 	{
 		if (!isGameOver)
 		{
+			//gameplay.Play();
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
 		if (!(delta_loc.x == 0 && delta_loc.y == 1))
@@ -88,10 +92,13 @@ void Game::UpdateModel()
 			{
 				goal.Respawn(rng,brd,snek,obs);
 				snek.Grow();
+				eat2.Play();
+				
 			}
 			if (!brd.IsInsideBoard(next) || snek.IsInTile(next) || obs.eating(next))
 			{
 				isGameOver = true;
+				gmover.Play();
 			}
 			else
 			{
@@ -121,6 +128,8 @@ void Game::UpdateModel()
 					snek.resetSnake( {5,4} );
 					delta_loc = { 1, 0 };
 					snekMovePeriod = 16;
+					gmover.StopAll();
+					
 			}
 		}
 	}
